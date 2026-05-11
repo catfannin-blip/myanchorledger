@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Anchor Ledger — Confidential bookkeeping recovery and IRS support for business owners in sensitive tax situations. Cat Pena, principal."/>
+<title>Anchor Ledger — Confidential Bookkeeping Recovery &amp; IRS Support for Business Owners</title>
+
+<!-- ===== Favicon (anchor logo, embedded as SVG data URI) ===== -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 160'><circle cx='72' cy='98' r='44' fill='%2372daff' opacity='0.92'/><circle cx='72' cy='22' r='10' fill='none' stroke='%230b516b' stroke-width='7'/><line x1='72' y1='32' x2='72' y2='148' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><line x1='38' y1='52' x2='106' y2='52' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M72,148 Q38,148 28,118' fill='none' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M72,148 Q106,148 116,118' fill='none' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M28,118 Q20,108 30,100' fill='none' stroke='%230b516b' stroke-width='6' stroke-linecap='round'/><path d='M116,118 Q124,108 114,100' fill='none' stroke='%230b516b' stroke-width='6' stroke-linecap='round'/></svg>"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 160'><circle cx='72' cy='98' r='44' fill='%2372daff' opacity='0.92'/><circle cx='72' cy='22' r='10' fill='none' stroke='%230b516b' stroke-width='7'/><line x1='72' y1='32' x2='72' y2='148' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><line x1='38' y1='52' x2='106' y2='52' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M72,148 Q38,148 28,118' fill='none' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M72,148 Q106,148 116,118' fill='none' stroke='%230b516b' stroke-width='7' stroke-linecap='round'/><path d='M28,118 Q20,108 30,100' fill='none' stroke='%230b516b' stroke-width='6' stroke-linecap='round'/><path d='M116,118 Q124,108 114,100' fill='none' stroke='%230b516b' stroke-width='6' stroke-linecap='round'/></svg>"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ===== Palette (Barton Springs, from style kit) ===== */
+:root {
+  --cream: #F5F2EC;
+  --ink: #2C3830;
+  --warm-mid: #7A9A8C;
+  --soft: #D4E5DF;
+  --white: #EBF4F0;
+  --accent: #5F9E8A;
+  --anchor-dark: #0b516b;
+  --anchor-light: #72daff;
+}
+
+/* ===== Base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+h1 em { font-style: italic; color: var(--accent); }
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+  line-height: 1.3;
+}
+
+p { margin-bottom: 1rem; color: #4a4038; }
+
+.label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: var(--anchor-dark);
+  margin: 1.25rem 0;
+}
+
+/* ===== About header: headshot + name ===== */
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.about-header-text { width: 100%; }
+.about-header-text h2 { margin-bottom: 0.5rem; }
+.about-header-text .divider {
+  margin: 0.75rem auto 0;
+}
+.headshot {
+  width: auto;
+  max-width: 280px;
+  height: auto;
+  border-radius: 2px;
+  border: 1px solid var(--soft);
+  flex-shrink: 0;
+  background: var(--white);
+  display: block;
+}
+.headshot-placeholder {
+  width: 220px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--anchor-dark);
+  background: var(--white);
+  letter-spacing: 0.05em;
+}
+@media (max-width: 520px) {
+  .headshot { max-width: 220px; }
+}
+
+/* ===== Brand header (top of page) ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+.brand svg { width: 44px; height: 44px; }
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+/* ===== Wave at top ===== */
+#nav-wave {
+  position: relative;
+  top: auto; left: 0; right: 0;
+  height: 32px;
+  margin-top: 1.5rem;
+}
+#nav-wave svg { width: 100%; height: 32px; display: block; }
+
+/* ===== Rope + Anchor — signature fixed detail, bottom-right ===== */
+#anchor-rope-container {
+  position: fixed;
+  bottom: 0;
+  right: 2.5rem;
+  width: 60px;
+  z-index: 98;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#rope-svg {
+  width: 12px;
+  display: block;
+  overflow: visible;
+  animation: ropeSway 4s ease-in-out infinite;
+  transform-origin: 50% 0%;
+}
+#anchor-icon {
+  width: 52px;
+  height: 52px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(11,81,107,0.18));
+  transform-origin: 50% 8%;
+  animation: anchorSway 4s ease-in-out infinite;
+}
+@keyframes anchorSway {
+  0%   { transform: rotate(-3deg); }
+  50%  { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+@keyframes ropeSway {
+  0%   { transform: skewX(-2deg); }
+  50%  { transform: skewX(2deg); }
+  100% { transform: skewX(-2deg); }
+}
+@media (max-width: 640px) {
+  #anchor-rope-container { right: 1rem; }
+  #anchor-icon { width: 40px; height: 40px; }
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.btn:hover { background: var(--accent); }
+
+/* ===== Layout ===== */
+main { padding-top: 1.5rem; }
+section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+#header { padding-top: 1rem; padding-bottom: 0; }
+@media (max-width: 560px) {
+  section { padding: 3rem 1.5rem; }
+  #header { padding-top: 1rem; padding-bottom: 0; }
+}
+
+/* ===== Section bands — full-width colored backgrounds ===== */
+.band {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.band-mint { background: var(--white); border-top: 1px solid var(--soft); border-bottom: 1px solid var(--soft); }
+.band-soft { background: var(--soft); }
+.band-cream { background: var(--cream); }
+.band-deep { background: var(--ink); color: var(--cream); }
+.band-deep > section > .label { color: var(--anchor-light); }
+.band-deep > section > h2,
+.band-deep > section > p,
+.band-deep > section > .process-intro { color: var(--cream); }
+.band-deep > section > .divider { background: var(--anchor-light); }
+/* Cards inside dark band keep their normal dark-on-light text */
+.band-deep .process li,
+.band-deep .process p,
+.band-deep .process strong { color: var(--ink); }
+.band > section { padding-top: 4rem; padding-bottom: 4rem; }
+@media (max-width: 560px) {
+  .band > section { padding-top: 3rem; padding-bottom: 3rem; }
+}
+
+/* ===== Hero ===== */
+#hero { padding-top: 2.5rem; padding-bottom: 3rem; }
+
+/* ===== Capacity signal under CTA ===== */
+.capacity-line {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm-mid);
+  font-weight: 500;
+}
+
+/* ===== Fine print (e.g. no-white-label line) ===== */
+.fine-print {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  color: var(--warm-mid);
+  font-style: italic;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: #5a5248;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.75;
+}
+
+/* ===== Services list (card-style) ===== */
+.services {
+  list-style: none;
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.services li {
+  background: var(--cream);
+  border: 1px solid var(--soft);
+  border-left: 3px solid var(--sage);
+  padding: 1.25rem 1.5rem;
+  border-radius: 2px;
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+  transition: border-left-color 0.2s, transform 0.2s;
+}
+.services li:hover {
+  border-left-color: var(--anchor-dark);
+  transform: translateX(2px);
+}
+.services .num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--anchor-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+.services strong {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+.services p { margin: 0.25rem 0 0; font-size: 0.93rem; }
+
+/* ===== Service group subheaders ===== */
+.service-group-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--anchor-dark);
+  font-weight: 500;
+  display: block;
+  margin: 2.25rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--soft);
+}
+.service-group-label:first-child { margin-top: 1.75rem; }
+.services + .service-group-label { margin-top: 2.5rem; }
+
+/* Vary accent color per service group so the long list has rhythm */
+.service-group-label.group-core    { color: var(--anchor-dark); border-bottom-color: var(--anchor-dark); }
+.service-group-label.group-tax     { color: var(--accent); border-bottom-color: var(--accent); }
+.service-group-label.group-systems { color: var(--warm-mid); border-bottom-color: var(--warm-mid); }
+.service-group-label.group-projects{ color: var(--anchor-dark); border-bottom-color: var(--anchor-dark); }
+
+.services.accent-core    li { border-left-color: var(--anchor-dark); }
+.services.accent-tax     li { border-left-color: var(--accent); }
+.services.accent-systems li { border-left-color: var(--warm-mid); }
+.services.accent-projects li { border-left-color: var(--anchor-dark); }
+
+.services.accent-core    .num { color: var(--anchor-dark); }
+.services.accent-tax     .num { color: var(--accent); }
+.services.accent-systems .num { color: var(--warm-mid); }
+.services.accent-projects .num { color: var(--anchor-dark); }
+
+/* ===== Process steps ===== */
+.process-intro {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #4a4038;
+}
+.process {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0;
+  position: relative;
+}
+.process li {
+  background: var(--cream);
+  border: 1px solid var(--anchor-dark);
+  border-left: 3px solid var(--anchor-light);
+  padding: 1.5rem 1.75rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+  position: relative;
+}
+.process li:last-child { margin-bottom: 0; }
+.process .step-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.process .step-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--anchor-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.band-deep .process .step-num { color: var(--anchor-dark); }
+.band-deep .process-intro { color: var(--soft); }
+.process .step-divider {
+  color: var(--warm-mid);
+  font-weight: 300;
+}
+.process strong {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+.process p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  padding-left: 0;
+}
+
+/* ===== Rate block (rate + scope offer together) ===== */
+.rate-block {
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-top: 3px solid var(--sage);
+  padding: 1.75rem 2rem;
+  border-radius: 2px;
+  margin-top: 2rem;
+}
+.rate-line {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.rate-line strong { font-weight: 700; color: var(--sage-deep); }
+
+/* ===== Free scope offer note ===== */
+.scope-offer {
+  font-size: 0.95rem;
+  color: #4a4038;
+  margin: 0.75rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--soft);
+  line-height: 1.65;
+}
+.scope-offer strong {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--anchor-dark);
+}
+
+/* ===== Scope note ("what I don't take on") ===== */
+.scope-note {
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-left: 4px solid var(--anchor-dark);
+  padding: 1.5rem 1.75rem;
+  border-radius: 2px;
+  margin-top: 2rem;
+}
+.scope-note .scope-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--anchor-dark);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.scope-note p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+/* ===== Testimonial ===== */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 820px) {
+  .testimonial-grid { grid-template-columns: 1fr; }
+}
+.testimonial {
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-top: 3px solid var(--accent);
+  padding: 2.5rem 2.25rem 2rem;
+  border-radius: 2px;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.testimonial:nth-child(2) { border-top-color: var(--anchor-dark); }
+.testimonial:nth-child(2) .testimonial-mark { color: var(--anchor-dark); }
+.testimonial-mark {
+  width: 32px;
+  height: auto;
+  color: var(--accent);
+  opacity: 0.35;
+  display: block;
+  margin: 0 auto 1rem;
+}
+.testimonial blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 auto 1.5rem;
+  flex: 1;
+}
+.testimonial figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--soft);
+  margin: 0 auto;
+}
+.cite-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.cite-role {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--anchor-dark);
+  font-weight: 500;
+}
+.cite-context {
+  font-size: 0.85rem;
+  color: var(--warm-mid);
+  font-style: italic;
+}
+@media (max-width: 560px) {
+  .testimonial { padding: 2.25rem 1.5rem 2rem; }
+}
+
+/* ===== Contact block ===== */
+.contact-block {
+  background: var(--cream);
+  border: 1px solid var(--soft);
+  border-left: 4px solid var(--anchor-dark);
+  padding: 2rem 2.25rem;
+  border-radius: 2px;
+  margin-top: 1.5rem;
+}
+.contact-block a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  font-size: 1.05rem;
+}
+.contact-block a:hover { color: var(--accent); }
+
+/* ===== Footer ===== */
+footer {
+  background: var(--cream);
+  border-top: 1px solid var(--soft);
+  padding: 2.5rem 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm-mid);
+}
+footer .footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  margin-bottom: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+footer .footer-logo svg { width: 22px; height: 22px; }
+
+/* ===== IRS Niche: Urgency banner ===== */
+.irs-banner {
+  background: var(--anchor-dark);
+  color: var(--anchor-light);
+  text-align: center;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ===== IRS Niche: Recognition checklist ===== */
+.recognition-section {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 3.5rem 2rem;
+}
+.recognition-section .label { color: var(--anchor-light); }
+.recognition-section h2 { color: var(--cream); margin-bottom: 1.5rem; }
+.checklist {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+  max-width: 600px;
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--soft);
+  line-height: 1.5;
+}
+.check-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--anchor-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.check-icon svg { width: 11px; height: 11px; }
+.recognition-cta {
+  font-size: 0.95rem;
+  color: var(--warm-mid);
+  font-style: italic;
+  margin-top: 0;
+}
+
+/* ===== IRS Niche: How handoff works ===== */
+.handoff-block {
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-left: 4px solid var(--anchor-dark);
+  padding: 1.5rem 1.75rem;
+  border-radius: 2px;
+  margin-top: 2rem;
+}
+.handoff-block .scope-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--anchor-dark);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.handoff-block p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+/* ===== Mock watermark ===== */
+.mock-badge {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e85c3a;
+  color: white;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.35rem 1rem;
+  border-radius: 2px;
+  z-index: 9999;
+  pointer-events: none;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.disclosure {
+  max-width: 640px;
+  margin: 2.5rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--soft);
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.disclosure p {
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--warm-mid);
+  margin-bottom: 0.85rem;
+}
+.disclosure p:last-child { margin-bottom: 0; }
+</style>
+</head>
+
+<body>
+
+<!-- ===== MOCK BADGE ===== -->
+<div class="mock-badge">⚠ Mock Preview — Not Live</div>
+
+<!-- ===== IRS URGENCY BANNER ===== -->
+<div class="irs-banner">Dealing with an IRS notice, unfiled returns, or disorganized books? Confidential support is available. &nbsp;→&nbsp; <a href="#contact" style="color:inherit; text-decoration:underline;">Reach out privately</a></div>
+
+
+<!-- ===== Wave at top ===== -->
+<div id="nav-wave">
+  <svg viewBox="0 0 1440 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L1440,0 L1440,8 Q1350,28 1260,14 Q1170,0 1080,16 Q990,30 900,14 Q810,0 720,16 Q630,30 540,14 Q450,0 360,16 Q270,30 180,14 Q90,0 0,16 Z" fill="#F5F2EC"/>
+    <path d="M0,16 Q90,0 180,14 Q270,30 360,16 Q450,0 540,14 Q630,30 720,16 Q810,0 900,14 Q990,30 1080,16 Q1170,0 1260,14 Q1350,28 1440,8" fill="none" stroke="#D4E5DF" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<!-- ===== Rope + Anchor — signature fixed detail ===== -->
+<div id="anchor-rope-container" aria-hidden="true">
+  <svg id="rope-svg" viewBox="0 0 12 120" xmlns="http://www.w3.org/2000/svg" style="height:120px; transition: height 0.3s ease;">
+    <line x1="4" y1="0" x2="4" y2="120" stroke="#0b516b" stroke-width="1.8" stroke-dasharray="6 4" opacity="0.75"/>
+    <line x1="8" y1="0" x2="8" y2="120" stroke="#72daff" stroke-width="1.2" stroke-dasharray="4 6" stroke-dashoffset="5" opacity="0.5"/>
+  </svg>
+  <svg id="anchor-icon" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="72" cy="98" r="44" fill="#72daff" opacity="0.92"/>
+    <circle cx="72" cy="22" r="10" fill="none" stroke="#0b516b" stroke-width="7"/>
+    <line x1="72" y1="32" x2="72" y2="148" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+    <line x1="38" y1="52" x2="106" y2="52" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M72,148 Q38,148 28,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M72,148 Q106,148 116,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M28,118 Q20,108 30,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+    <path d="M116,118 Q124,108 114,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<main id="top">
+
+  <!-- ===== HEADER LOGO ===== -->
+  <section id="header">
+    <div class="brand">
+      <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="72" cy="98" r="44" fill="#72daff" opacity="0.92"/>
+        <circle cx="72" cy="22" r="10" fill="none" stroke="#0b516b" stroke-width="7"/>
+        <line x1="72" y1="32" x2="72" y2="148" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+        <line x1="38" y1="52" x2="106" y2="52" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+        <path d="M72,148 Q38,148 28,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+        <path d="M72,148 Q106,148 116,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+        <path d="M28,118 Q20,108 30,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+        <path d="M116,118 Q124,108 114,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-name">Anchor Ledger</div>
+    </div>
+  </section>
+
+  <!-- ===== HERO (mint band) ===== -->
+  <div class="band band-mint">
+    <section id="hero">
+      <span class="label">Confidential Bookkeeping Recovery &amp; IRS Support</span>
+      <h1>Steady, private support for business owners navigating <em>difficult tax situations.</em></h1>
+      <p class="hero-sub">Missing years of records. An IRS notice. Books that need to be rebuilt. These situations are more common than you might think — and they can be carefully resolved. We handle everything quietly, thoroughly, and documented for your CPA or Enrolled Agent to take it from there.</p>
+      <a href="#contact" class="btn">Start a Confidential Conversation</a>
+      <p class="capacity-line">Currently accepting new engagements — discreet, judgment-free.</p>
+      <p class="fine-print">NDA-friendly. All inquiries confidential.</p>
+    </section>
+  </div>
+
+  <!-- ===== IRS RECOGNITION CHECKLIST ===== -->
+  <div class="recognition-section">
+    <div style="max-width:760px; margin:0 auto; padding: 0 2rem;">
+      <span class="label">Does this sound familiar?</span>
+      <h2>Many clients come to us in exactly one of these situations.</h2>
+      <ul class="checklist">
+        <li><span class="check-icon"><svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5l3.5 3.5L11 1" stroke="#0b516b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>You received an IRS notice or correspondence and your records need to be organized before involving a CPA or EA</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5l3.5 3.5L11 1" stroke="#0b516b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>You have one or more years of unfiled tax returns and no financial statements to support them</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5l3.5 3.5L11 1" stroke="#0b516b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Your CPA or EA is asking for reconciled books you haven't been able to provide</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5l3.5 3.5L11 1" stroke="#0b516b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Your books exist but you know they need significant correction before anyone else reviews them</li>
+        <li><span class="check-icon"><svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5l3.5 3.5L11 1" stroke="#0b516b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>You need someone to rebuild the records and deliver clean financials your CPA can actually work with</li>
+      </ul>
+      <p class="recognition-cta">Many clients come to us after years of avoiding the issue. Conversations are confidential, judgment-free, and handled discreetly. When the books are in order, your options become clearer.</p>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <span class="label">Services</span>
+    <h2>What we handle</h2>
+    <div class="divider"></div>
+
+    <span class="service-group-label group-core">IRS &amp; Audit Recovery — Most Requested</span>
+    <ul class="services accent-core">
+      <li>
+        <span class="num">01</span>
+        <div>
+          <strong>Unfiled Years Caught Up</strong>
+          <p>Two to seven years of books rebuilt from bank statements and source documents — carefully documented and ready to support accurate filings.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div>
+          <strong>IRS Correspondence Support</strong>
+          <p>Information requests organized, workpapers indexed, reconciliations completed. Your records presented clearly and thoroughly — ready for your licensed representative to take forward.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div>
+          <strong>Book Cleanup &amp; Correction</strong>
+          <p>Existing books that need reconciliation — traced, clarified, and documented with full workpapers your CPA or EA can rely on.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div>
+          <strong>Transaction-Level Research &amp; Resolution</strong>
+          <p>When something doesn't reconcile and the source hasn't been identified. Careful, methodical analysis to find the root cause, document the resolution, and produce a clear memo — for the balance sheet items that need a thorough explanation.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <div>
+          <strong>Journal Entries &amp; Adjustments</strong>
+          <p>Accruals, reclasses, fixed-asset schedules. Each entry documented for fast review by your CPA or Enrolled Agent.</p>
+        </div>
+      </li>
+    </ul>
+
+    <span class="service-group-label group-tax">Tax Preparation</span>
+    <ul class="services accent-tax">
+      <li>
+        <span class="num">06</span>
+        <div>
+          <strong>Individual &amp; Small-Business Returns</strong>
+          <p>Individual 1040s and small-business pass-throughs — Schedule C, simple 1065s, and 1120-S returns. Prepared and signed as a paid tax preparer. IRS representation (audits, appeals, collections) is referred to a CPA or Enrolled Agent.</p>
+        </div>
+      </li>
+    </ul>
+
+    <span class="service-group-label group-systems">Systems &amp; Implementation Support</span>
+    <ul class="services accent-systems">
+      <li>
+        <span class="num">07</span>
+        <div>
+          <strong>ERP Implementation &amp; Migration Support</strong>
+          <p>Accounting-side support for ERP migrations — chart of accounts mapping, historical data validation, parallel-period reconciliation, and go-live support. We handle the general ledger side. You handle the IT.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">08</span>
+        <div>
+          <strong>Payroll System Implementation Support</strong>
+          <p>GL mapping, tax liability account setup, automated journal entry configuration, and first-period reconciliation for payroll migrations. We make sure your payroll system talks correctly to your general ledger.</p>
+        </div>
+      </li>
+    </ul>
+
+    <span class="service-group-label group-projects">Project-Based Engagements</span>
+    <ul class="services accent-projects">
+      <li>
+        <span class="num">09</span>
+        <div>
+          <strong>AR Recovery</strong>
+          <p>A scoped engagement to diagnose stuck receivables — portal issues, invoice formatting problems, contact gaps — resolve them, and rebuild the collection process so they don't get stuck again.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">10</span>
+        <div>
+          <strong>Transaction-Level Research &amp; Resolution</strong>
+          <p>When something doesn't reconcile and the source hasn't been identified. Methodical analysis, root cause documentation, and a clear resolution memo — for the balance sheet items that have been unresolved for months.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">11</span>
+        <div>
+          <strong>Due Diligence Readiness</strong>
+          <p>Review the balance sheet thoroughly, resolve any items that need clarification, and assemble the financial documentation that banks, investors, and lenders will request. For companies preparing to raise capital or close a significant transaction.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">12</span>
+        <div>
+          <strong>Revenue Reconciliation</strong>
+          <p>Bridge the gap between what one system shows as sold and what the other system recognizes as revenue. We build a repeatable reconciliation process so your two sources of truth stop disagreeing.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">13</span>
+        <div>
+          <strong>Year-End Close Projects</strong>
+          <p>For companies that manage their own books month-to-month but need experienced help with year-end adjusting entries before CPA handoff. A targeted, seasonal engagement to get you across the finish line clean.</p>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+
+  <!-- ===== PROCESS (deep band — visual break in the middle) ===== -->
+  <div class="band band-deep">
+    <section id="process">
+      <span class="label">How It Works</span>
+      <h2>Every engagement, four clear steps.</h2>
+      <div class="divider"></div>
+      <p class="process-intro">From the initial conversation through final documentation, you always know where things stand and what comes next.</p>
+
+      <ul class="process">
+        <li>
+          <div class="step-header">
+            <span class="step-num">01</span>
+            <span class="step-divider">|</span>
+            <strong>Scope Defined</strong>
+          </div>
+          <p>We start by understanding your company size, your accounting system, and exactly what work needs to happen. No vague retainers — just a clear scope you can sign off on.</p>
+        </li>
+        <li>
+          <div class="step-header">
+            <span class="step-num">02</span>
+            <span class="step-divider">|</span>
+            <strong>Access Granted</strong>
+          </div>
+          <p>You provide access to your ERP or accounting system. We work directly inside your environment — not in a separate tool, not on a spreadsheet. Your books, cleaned in place.</p>
+        </li>
+        <li>
+          <div class="step-header">
+            <span class="step-num">03</span>
+            <span class="step-divider">|</span>
+            <strong>Work Completed</strong>
+          </div>
+          <p>The engagement is carried out: reconciliations, close process work, documentation support, or project work — whatever was scoped and agreed upon.</p>
+        </li>
+        <li>
+          <div class="step-header">
+            <span class="step-num">04</span>
+            <span class="step-divider">|</span>
+            <strong>Documentation Delivered</strong>
+          </div>
+          <p>You receive full workpapers, deliverables, and documentation your team — and your CPA — can actually use.</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonial">
+    <div class="testimonial-grid">
+
+      <!-- Private practice (unfiled returns) moved FIRST for IRS audience -->
+      <figure class="testimonial">
+        <svg class="testimonial-mark" viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0,32 L0,18 C0,8 6,2 16,0 L16,8 C11,10 8,13 8,18 L16,18 L16,32 Z M24,32 L24,18 C24,8 30,2 40,0 L40,8 C35,10 32,13 32,18 L40,18 L40,32 Z" fill="currentColor"/>
+        </svg>
+        <blockquote>
+          I had two years of unfiled S-Corp tax returns and no bookkeeping or financial statements for my business. Cat rebuilt two years of books and financials in a week, connected me with a solid Enrolled Agent, and managed the process between us. Everything was handled professionally and discreetly — what had felt like an overwhelming situation was resolved calmly and completely.
+        </blockquote>
+        <figcaption>
+          <span class="cite-name">Private Practice Owner</span>
+          <span class="cite-role">Mental Health Clinic</span>
+          <span class="cite-context">Austin, TX &middot; Client name withheld for privacy</span>
+        </figcaption>
+      </figure>
+
+      <figure class="testimonial">
+        <svg class="testimonial-mark" viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0,32 L0,18 C0,8 6,2 16,0 L16,8 C11,10 8,13 8,18 L16,18 L16,32 Z M24,32 L24,18 C24,8 30,2 40,0 L40,8 C35,10 32,13 32,18 L40,18 L40,32 Z" fill="currentColor"/>
+        </svg>
+        <blockquote>
+          Cat was persistent and dependable in working through legacy balance sheet reconciliation items and following them through to resolution. Her steady approach brought structure and momentum to several long-outstanding issues that had resisted prior cleanup efforts.
+        </blockquote>
+        <figcaption>
+          <span class="cite-name">Travis Fry, CPA</span>
+          <span class="cite-role">Chief Financial Officer</span>
+          <span class="cite-context">Growth-Stage Manufacturing Company, Oil &amp; Gas Industry &middot; Austin, TX</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ===== ABOUT (mint band, placed near the end, just before Contact) ===== -->
+  <div class="band band-mint">
+    <section id="about">
+      <span class="label">About</span>
+
+      <!-- HEADSHOT: hosted on imgbb. To replace, swap the src URL below with a new direct image link. -->
+      <div class="about-header">
+        <img src="https://i.ibb.co/XxVPWGTp/5498-CCCF-2-AB3-4-DEB-ABC6-4-B94-F91835-F6.png" alt="Cat Pena" class="headshot"
+             onerror="this.style.display='none'; document.getElementById('headshot-placeholder').style.display='flex';"/>
+        <div id="headshot-placeholder" class="headshot headshot-placeholder" style="display:none;">
+          <span>CP</span>
+        </div>
+        <div class="about-header-text">
+          <h2>Cat Pena, Principal</h2>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+      <p>About eight years in audit-focused accounting&mdash;split between public and industry&mdash;so entries are well supported and workpapers are review-ready. I'm not a CPA or EA and don't represent clients before the IRS. I support firms behind the scenes, NDA-friendly, and your client relationships remain yours.</p>
+    </section>
+  </div>
+
+  <!-- ===== CONTACT (soft sage band) ===== -->
+  <div class="band band-soft">
+    <section id="contact">
+      <span class="label">Contact</span>
+      <h2>A confidential conversation costs nothing — and it's a good place to start.</h2>
+      <div class="divider"></div>
+      <p>Reach out with a few details about your situation — how many years need attention, what system your books are in, and whether you already have a CPA or EA involved. All conversations are private, handled discreetly, and completely judgment-free. I'll follow up within one business day.</p>
+      <p>If a colleague, CPA, or EA referred you, feel free to mention their name — it helps me understand your situation.</p>
+      <div class="contact-block">
+        <!-- EDIT EMAIL / PHONE HERE -->
+        <a href="mailto:catpena@myanchorledger.com">catpena@myanchorledger.com</a>
+        <div style="margin-top: 0.75rem;">
+          <a href="tel:+15129990101">512.999.0101</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo">
+    <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="72" cy="98" r="44" fill="#72daff" opacity="0.92"/>
+      <circle cx="72" cy="22" r="10" fill="none" stroke="#0b516b" stroke-width="7"/>
+      <line x1="72" y1="32" x2="72" y2="148" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+      <line x1="38" y1="52" x2="106" y2="52" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+      <path d="M72,148 Q38,148 28,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+      <path d="M72,148 Q106,148 116,118" fill="none" stroke="#0b516b" stroke-width="7" stroke-linecap="round"/>
+      <path d="M28,118 Q20,108 30,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+      <path d="M116,118 Q124,108 114,100" fill="none" stroke="#0b516b" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    Anchor Ledger
+  </div>
+  <div>&copy; <span id="year">2026</span> &nbsp;·&nbsp; Cat Pena</div>
+
+  <!-- ===== DISCLOSURE ===== -->
+  <div class="disclosure">
+    <p>The scope of services to be performed is expressly limited to balance sheet reconciliation and organization, account reconciliation procedures, and general ledger support activities. Such services do not constitute an audit, review, or compilation engagement as those terms are defined under applicable professional standards, and accordingly, no assurance is provided and no opinion or conclusion is expressed on the financial statements or any elements thereof. The practitioner does not undertake to provide tax compliance, tax advisory, or legal services, and no accountant-client relationship within the meaning of licensed CPA practice is established by virtue of this engagement. Management remains responsible for the fair presentation of the financial statements in accordance with the applicable financial reporting framework, as well as for the accuracy and completeness of the underlying financial information and records provided.</p>
+  </div>
+</footer>
+
+<script>
+  /* Footer year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Rope grows as user scrolls down; shrinks on scroll up */
+  (function() {
+    var ropeSvg = document.getElementById('rope-svg');
+    var MIN_ROPE = 60;
+    var MAX_ROPE = 480;
+    var ANCHOR_H = 60;
+    var NAV_H = 64;
+
+    function getMaxScroll() {
+      return Math.max(1, document.body.scrollHeight - window.innerHeight);
+    }
+    function updateRope() {
+      var maxAvail = window.innerHeight - NAV_H - ANCHOR_H - 16;
+      var clampedMax = Math.min(MAX_ROPE, maxAvail);
+      var frac = window.scrollY / Math.max(1, getMaxScroll());
+      var ropeH = MIN_ROPE + Math.round((clampedMax - MIN_ROPE) * frac);
+      ropeH = Math.max(MIN_ROPE, Math.min(clampedMax, ropeH));
+      ropeSvg.style.height = ropeH + 'px';
+      ropeSvg.setAttribute('viewBox', '0 0 12 ' + ropeH);
+      ropeSvg.querySelectorAll('line').forEach(function(l) {
+        l.setAttribute('y2', ropeH);
+      });
+    }
+    window.addEventListener('scroll', updateRope, { passive: true });
+    window.addEventListener('resize', updateRope);
+    updateRope();
+  })();
+</script>
+
+</body>
+</html>
